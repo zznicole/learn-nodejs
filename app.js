@@ -41,35 +41,54 @@
 // nic.emit('name');
 // emma.emit('name');
 
-// 5. how to work with readline module
-const readline = require('readline');
-const rl = readline.createInterface({input: process.stdin, output: process.stdout});
+// // 5. how to work with readline module
+// const readline = require('readline');
+// const rl = readline.createInterface({input: process.stdin, output: process.stdout});
 
-let num1 = Math.floor(Math.random() * 10 + 1);
-let num2 = Math.floor(Math.random() * 10 + 1);
-let answer = num1 * num2;
+// let num1 = Math.floor(Math.random() * 10 + 1);
+// let num2 = Math.floor(Math.random() * 10 + 1);
+// let answer = num1 * num2;
 
-rl.question(`What is ${ num1 } * ${ num2 } ? \n`, 
-            (userInput)=> {
-              if(userInput.trim() == answer) {
-                rl.close();
-              } 
-              else {
-                rl.setPrompt('Incorrect, please try again \n');
-                rl.prompt();
-                rl.on('line', (userInput) => {
-                  if(userInput.trim() == answer){
-                    rl.close();
-                  } 
-                  else{
-                  rl.setPrompt('Incorrect, please try again. \n');
-                  rl.prompt();
-                  }
-                });
-              }
-});
+// rl.question(`What is ${ num1 } * ${ num2 } ? \n`, 
+//             (userInput)=> {
+//               if(userInput.trim() == answer) {
+//                 rl.close();
+//               } 
+//               else {
+//                 rl.setPrompt('Incorrect, please try again \n');
+//                 rl.prompt();
+//                 rl.on('line', (userInput) => {
+//                   if(userInput.trim() == answer){
+//                     rl.close();
+//                   } 
+//                   else{
+//                   rl.setPrompt('Incorrect, please try again. \n');
+//                   rl.prompt();
+//                   }
+//                 });
+//               }
+// });
               
-rl.on('close', ()=> { console.log('Congrats! Your answer is right.');
-});
+// rl.on('close', ()=> { console.log('Congrats! Your answer is right.');
+// });
             
+// 6. how to use the file system module to create and read a file
+const fs = require('fs');
+// create a file
+fs.writeFile('fileSystem.js', 'This file is created by Node js.', (err)=>{
+  if(err){ 
+    console.log(err);
+  }
+  else {
+    console.log('File is created successfully.');
+    // read a file
+    fs.readFile('fileSystem.js','utf8',(err,file)=>{
+      if(err)
+      console.log(err);
+      else {
+        console.log(file);
+      }
+    })
+  }
+})
             
