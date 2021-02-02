@@ -93,7 +93,7 @@ const fs = require('fs');
 //   }
 // });
 
-// // rename a file
+// // 6.1. rename a file
 // fs.rename('fileSystem.js','fileSystemRename.js',(err)=>{
 //   if(err){
 //     console.log(err);
@@ -102,7 +102,7 @@ const fs = require('fs');
 //   }
 //   });
 
-// // add more at end of the file
+// // 6.2 add more data at end of the file
 // fs.appendFile('fileSystemRename.js',' Appending more data',(err)=>{
 //   if(err){
 //     console.log(err);
@@ -111,11 +111,12 @@ const fs = require('fs');
 //   }
 // });
 
-// delete a file
-fs.unlink('fileSystemRename.js',(err)=>{
-  if(err){
-    console.log(err);
-  } else {
-    console.log('The file is successfully deleted');
-  }
-});
+// // 6.3 delete a file
+// fs.unlink('fileSystemRename.js',(err)=>{
+//   if(err){
+//     console.log(err);
+//   } else {
+//     console.log('The file is successfully deleted');
+//   }
+// });
+ 
