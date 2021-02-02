@@ -75,31 +75,40 @@
  // 6. how to use the file system module to create and read a file
 const fs = require('fs');
 
-// create a file
-fs.writeFile('fileSystem.js', 'This file is created by Node js.', (err)=>{
-  if(err){ 
-    console.log(err);
-  }
-  else {
-    console.log('File is created successfully.');
-    // read a file
-    fs.readFile('fileSystem.js','utf8',(err,file)=>{
-      if(err)
-      console.log(err);
-      else {
-        console.log(file);
-      }
-    })
-  }
-});
+// // create a file
+// fs.writeFile('fileSystem.js', 'This file is created by Node js.', (err)=>{
+//   if(err){ 
+//     console.log(err);
+//   }
+//   else {
+//     console.log('File is created successfully.');
+//     // read a file
+//     fs.readFile('fileSystem.js','utf8',(err,file)=>{
+//       if(err)
+//       console.log(err);
+//       else {
+//         console.log(file);
+//       }
+//     })
+//   }
+// });
 
-// rename a file
-fs.rename('fileSystem.js','fileSystemRename.js',(err)=>{
+// // rename a file
+// fs.rename('fileSystem.js','fileSystemRename.js',(err)=>{
+//   if(err){
+//     console.log(err);
+//   } else {
+//     console.log('The file is renamed successfully.')
+//   }
+//   });
+
+// add more at end of the file
+fs.appendFile('fileSystemRename.js',' Appending more data',(err)=>{
   if(err){
     console.log(err);
   } else {
-    console.log('The file is renamed successfully.')
+    console.log('File is appended with some new data successfully.');
   }
-  });
+});
 
 
