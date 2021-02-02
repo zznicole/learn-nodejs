@@ -72,8 +72,9 @@
 // rl.on('close', ()=> { console.log('Congrats! Your answer is right.');
 // });
             
-// 6. how to use the file system module to create and read a file
+ // 6. how to use the file system module to create and read a file
 const fs = require('fs');
+
 // create a file
 fs.writeFile('fileSystem.js', 'This file is created by Node js.', (err)=>{
   if(err){ 
@@ -90,5 +91,15 @@ fs.writeFile('fileSystem.js', 'This file is created by Node js.', (err)=>{
       }
     })
   }
-})
-            
+});
+
+// rename a file
+fs.rename('fileSystem.js','fileSystemRename.js',(err)=>{
+  if(err){
+    console.log(err);
+  } else {
+    console.log('The file is renamed successfully.')
+  }
+  });
+
+
