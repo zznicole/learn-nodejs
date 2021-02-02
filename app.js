@@ -102,13 +102,20 @@ const fs = require('fs');
 //   }
 //   });
 
-// add more at end of the file
-fs.appendFile('fileSystemRename.js',' Appending more data',(err)=>{
+// // add more at end of the file
+// fs.appendFile('fileSystemRename.js',' Appending more data',(err)=>{
+//   if(err){
+//     console.log(err);
+//   } else {
+//     console.log('File is appended with some new data successfully.');
+//   }
+// });
+
+// delete a file
+fs.unlink('fileSystemRename.js',(err)=>{
   if(err){
     console.log(err);
   } else {
-    console.log('File is appended with some new data successfully.');
+    console.log('The file is successfully deleted');
   }
 });
-
-
