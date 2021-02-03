@@ -120,3 +120,18 @@ const fs = require('fs');
 //   }
 // });
  
+// 6.4 create and delete a folder
+fs.mkdir('fileSystemFolder',(err)=>{
+  if(err){
+    console.log(err);
+  } else {
+    console.log('Successfully created a folder');
+    fs.rmdir('fileSystemFolder',(err)=>{
+      if(err){
+        console.log(err);
+      } else {
+        console.log('The folder is deleted successfully.');
+      }
+    })
+  }
+})
