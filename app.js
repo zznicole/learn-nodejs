@@ -120,12 +120,42 @@ const fs = require('fs');
 //   }
 // });
  
-// 6.4 create and delete a folder
+// // 6.4 create and delete a folder, create a file inside a folder
+// fs.mkdir('fileSystemFolder',(err)=>{
+//   if(err){
+//     console.log(err);
+//   } else {
+//     console.log('Successfully created a folder');
+//     fs.rmdir('fileSystemFolder',(err)=>{
+//       if(err){
+//         console.log(err);
+//       } else {
+//         console.log('The folder is deleted successfully.');
+//       }
+//     })
+//   }
+// })
+
+// 6.5 create a file inside a folder and delete the nonempty folder 
 fs.mkdir('fileSystemFolder',(err)=>{
   if(err){
     console.log(err);
   } else {
     console.log('Successfully created a folder');
+    fs.writeFile('./fileSystemFolder/index.html','<!DOCTYPE html>',(err)=>{
+      if(err){
+        console.log(err);
+      } else {
+        console.log('A file is successfully created inside of the fileSystemFolder folder.');
+      }
+    })
+    fs.unlink('./fileSystemFolder/index.html', (err)=>{
+      if(err){
+        console.log(err);
+      } else {
+        console.log('The file is successfully deleted.');
+      }
+    })
     fs.rmdir('fileSystemFolder',(err)=>{
       if(err){
         console.log(err);
