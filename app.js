@@ -73,6 +73,7 @@
 // });
             
  // 6. how to use the file system module to create and read a file
+const { file, declareExportDeclaration } = require('@babel/types');
 const fs = require('fs');
 
 // // create a file
@@ -136,32 +137,83 @@ const fs = require('fs');
 //   }
 // })
 
-// 6.5 create a file inside a folder and delete the nonempty folder 
-fs.mkdir('fileSystemFolder',(err)=>{
+// // 6.5 create a file inside a folder and delete the nonempty folder 
+// fs.mkdir('fileSystemFolder',(err)=>{
+//   if(err){
+//     console.log(err);``
+//   } else {
+//     console.log('Successfully created a folder');
+//     fs.writeFile('./fileSystemFolder/index.html','<!DOCTYPE html>',(err)=>{
+//       if(err){
+//         console.log(err);
+//       } else {
+//         console.log('A file is successfully created inside of the fileSystemFolder folder.');
+//       }
+//     })
+//     fs.unlink('./fileSystemFolder/index.html', (err)=>{
+//       if(err){
+//         console.log(err);
+//       } else {
+//         console.log('The file is successfully deleted.');
+//       }
+//     })
+//     fs.rmdir('fileSystemFolder',(err)=>{
+//       if(err){
+//         console.log(err);
+//       } else {
+//         console.log('The folder is deleted successfully.');
+//       }
+//     })
+//   }
+// })
+
+// 6.6 steps to delete a folder which contents multiple files 
+// --create a folder and create two files within the folder
+fs.mkdir('multiFilesFolder', (err)=>{
   if(err){
     console.log(err);
   } else {
-    console.log('Successfully created a folder');
-    fs.writeFile('./fileSystemFolder/index.html','<!DOCTYPE html>',(err)=>{
+    console.log('Successfully created folder');
+    fs.writeFile('./multiFilesFolder/firstFile.txt','Hello from the first file!',(err)=>{
       if(err){
         console.log(err);
-      } else {
-        console.log('A file is successfully created inside of the fileSystemFolder folder.');
+      } else{
+        console.log('The first file is created.');
       }
-    })
-    fs.unlink('./fileSystemFolder/index.html', (err)=>{
+    });
+    fs.writeFile('./multiFilesFolder/secondFile.txt','Hello from the second file!',(err)=>{
       if(err){
         console.log(err);
-      } else {
-        console.log('The file is successfully deleted.');
+      } else{
+        console.log('The second file is created.');
       }
-    })
-    fs.rmdir('fileSystemFolder',(err)=>{
-      if(err){
-        console.log(err);
-      } else {
-        console.log('The folder is deleted successfully.');
-      }
-    })
+    });
   }
-})
+});
+
+// --read files and delete files in the folder in loop
+fs.readdir('multiFilesFolder',(err,files)=>{
+  if(err){
+    console.log(err);
+  } else{
+    console.log(files);
+    for(let file of files){
+      fs.unlink('./multiFilesFolder/' + file, (err)=>{
+        if(err){
+          console.log(err);
+        } else{
+          console.log('Files in the folder are successfully deleted.')
+        }
+      });
+    }
+  }
+});
+// --delete the empty folder 
+fs.rmdir('multiFilesFolder', (err)=>{
+  if(err){
+    console.log(err);
+  } else {
+    console.log('The folder is successfully deleted.');
+  }
+});
+
