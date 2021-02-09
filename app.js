@@ -167,53 +167,59 @@ const fs = require('fs');
 //   }
 // })
 
-// 6.6 steps to delete a folder which contents multiple files 
-// --create a folder and create two files within the folder
-fs.mkdir('multiFilesFolder', (err)=>{
-  if(err){
-    console.log(err);
-  } else {
-    console.log('Successfully created folder');
-    fs.writeFile('./multiFilesFolder/firstFile.txt','Hello from the first file!',(err)=>{
-      if(err){
-        console.log(err);
-      } else{
-        console.log('The first file is created.');
-      }
-    });
-    fs.writeFile('./multiFilesFolder/secondFile.txt','Hello from the second file!',(err)=>{
-      if(err){
-        console.log(err);
-      } else{
-        console.log('The second file is created.');
-      }
-    });
-  }
-});
+// // 6.6 steps to delete a folder which contents multiple files 
+// // --create a folder and create two files within the folder
+// fs.mkdir('multiFilesFolder', (err)=>{
+//   if(err){
+//     console.log(err);
+//   } else {
+//     console.log('Successfully created folder');
+//     fs.writeFile('./multiFilesFolder/firstFile.txt','Hello from the first file!',(err)=>{
+//       if(err){
+//         console.log(err);
+//       } else{
+//         console.log('The first file is created.');
+//       }
+//     });
+//     fs.writeFile('./multiFilesFolder/secondFile.txt','Hello from the second file!',(err)=>{
+//       if(err){
+//         console.log(err);
+//       } else{
+//         console.log('The second file is created.');
+//       }
+//     });
+//   }
+// });
 
-// --read files and delete files in the folder in loop
-fs.readdir('multiFilesFolder',(err,files)=>{
-  if(err){
-    console.log(err);
-  } else{
-    console.log(files);
-    for(let file of files){
-      fs.unlink('./multiFilesFolder/' + file, (err)=>{
-        if(err){
-          console.log(err);
-        } else{
-          console.log('Files in the folder are successfully deleted.')
-        }
-      });
-    }
-  }
-});
-// --delete the empty folder 
-fs.rmdir('multiFilesFolder', (err)=>{
-  if(err){
-    console.log(err);
-  } else {
-    console.log('The folder is successfully deleted.');
-  }
-});
+// // --read files and delete files in the folder in loop
+// fs.readdir('multiFilesFolder',(err,files)=>{
+//   if(err){
+//     console.log(err);
+//   } else{
+//     console.log(files);
+//     for(let file of files){
+//       fs.unlink('./multiFilesFolder/' + file, (err)=>{
+//         if(err){
+//           console.log(err);
+//         } else{
+//           console.log('Files in the folder are successfully deleted.')
+//         }
+//       });
+//     }
+//   }
+// });
+// // --delete the empty folder 
+// fs.rmdir('multiFilesFolder', (err)=>{
+//   if(err){
+//     console.log(err);
+//   } else {
+//     console.log('The folder is successfully deleted.');
+//   }
+// });
 
+// 6.7 read and write streams
+const readStream = fs.createReadStream('./bigFile.txt','utf8');
+const writeStream = fs.createWriteStream('./bigFile2.txt');
+readStream.on('data',(chunk)=>{
+  writeStream.write(chunk);
+})
