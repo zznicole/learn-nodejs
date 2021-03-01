@@ -242,17 +242,32 @@
 //   writeStream.write(chunk);
 // })
 
-// 6.8 Pipes and Pipe chainning
+// // 6.8 Pipe and Pipe chainning
 
-const fs = require('fs');
-const zlib = require('zlib');
-const gzip = zlib.createGzip();
-const gunzip = zlib.createGunzip();
-fs.writeFile('./hugeFile1.txt','This file is protending to be huge.',(err)=> console.log(err));
-const readStream1 = fs.createReadStream('./hugeFile1.txt', 'utf8');
-const writeStream1 = fs.createWriteStream('./hugeFile2.txt.gz');
-const readStream2 = fs.createReadStream('./hugeFile2.txt.gz');
-const writeStream2 = fs.createWriteStream('./uncompressedHugeFile2.txt');
+// const fs = require('fs');
+// const zlib = require('zlib');
+// const gzip = zlib.createGzip();
+// const gunzip = zlib.createGunzip();
+// fs.writeFile('./hugeFile1.txt','This file is protending to be huge.',(err)=> console.log(err));
+// const readStream1 = fs.createReadStream('./hugeFile1.txt', 'utf8');
+// const writeStream1 = fs.createWriteStream('./hugeFile2.txt.gz');
+// const readStream2 = fs.createReadStream('./hugeFile2.txt.gz');
+// const writeStream2 = fs.createWriteStream('./uncompressedHugeFile2.txt');
 
-readStream1.pipe(gzip).pipe(writeStream1); //the source srteam is readStream1, and the destination is wrtieSteam1
-readStream2.pipe(gunzip).pipe(writeStream2); // gzip is to compress the file, and gunzip is to uncompress it
+// readStream1.pipe(gzip).pipe(writeStream1); //the source srteam is readStream1, and the destination is wrtieSteam1
+// readStream2.pipe(gunzip).pipe(writeStream2); // gzip is to compress the file, and gunzip is to uncompress it
+
+// 7. http module, to creat a http server
+const http = require('http');
+const server = http.createServer((req, res)=>{
+  if (req.url === '/') {                        // send request if it's the root domain
+    res.write('The response from server on the root domain.');     // the response
+    res.end();                                  // send to user
+  }
+  else{
+    res.write('not using the root domain.');
+    res.end();
+  }
+    
+});
+server.listen('3000');   //listen on port 3000
