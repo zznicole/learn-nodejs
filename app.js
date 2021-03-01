@@ -72,9 +72,9 @@
 // rl.on('close', ()=> { console.log('Congrats! Your answer is right.');
 // });
             
- // 6. how to use the file system module to create and read a file
-const { file, declareExportDeclaration } = require('@babel/types');
-const fs = require('fs');
+// // 6. how to use the file system module to create and read a file
+
+//const fs = require('fs');
 
 // // create a file
 // fs.writeFile('fileSystem.js', 'This file is created by Node js.', (err)=>{
@@ -95,6 +95,8 @@ const fs = require('fs');
 // });
 
 // // 6.1. rename a file
+
+//const fs = require('fs');
 // fs.rename('fileSystem.js','fileSystemRename.js',(err)=>{
 //   if(err){
 //     console.log(err);
@@ -104,6 +106,8 @@ const fs = require('fs');
 //   });
 
 // // 6.2 add more data at end of the file
+
+//const fs = require('fs');
 // fs.appendFile('fileSystemRename.js',' Appending more data',(err)=>{
 //   if(err){
 //     console.log(err);
@@ -113,6 +117,8 @@ const fs = require('fs');
 // });
 
 // // 6.3 delete a file
+
+//const fs = require('fs');
 // fs.unlink('fileSystemRename.js',(err)=>{
 //   if(err){
 //     console.log(err);
@@ -122,6 +128,9 @@ const fs = require('fs');
 // });
  
 // // 6.4 create and delete a folder, create a file inside a folder
+
+
+//const fs = require('fs');
 // fs.mkdir('fileSystemFolder',(err)=>{
 //   if(err){
 //     console.log(err);
@@ -138,6 +147,9 @@ const fs = require('fs');
 // })
 
 // // 6.5 create a file inside a folder and delete the nonempty folder 
+
+
+//const fs = require('fs');
 // fs.mkdir('fileSystemFolder',(err)=>{
 //   if(err){
 //     console.log(err);``
@@ -169,6 +181,8 @@ const fs = require('fs');
 
 // // 6.6 steps to delete a folder which contents multiple files 
 // // --create a folder and create two files within the folder
+
+//const fs = require('fs');
 // fs.mkdir('multiFilesFolder', (err)=>{
 //   if(err){
 //     console.log(err);
@@ -217,9 +231,28 @@ const fs = require('fs');
 //   }
 // });
 
-// 6.7 read and write streams
-const readStream = fs.createReadStream('./bigFile.txt','utf8');
-const writeStream = fs.createWriteStream('./bigFile2.txt');
-readStream.on('data',(chunk)=>{
-  writeStream.write(chunk);
-})
+// // 6.7 read and write streams
+
+// const fs = require('fs');
+// fs.writeFile('./bigFile1.txt','This file is protending to be big.',(err)=> console.log(err));
+// fs.writeFile('./hugeFile1.txt','This file is protending to be huge.',(err)=> console.log(err));
+// const readStream = fs.createReadStream('./bigFile1.txt','utf8');
+// const writeStream = fs.createWriteStream('./bigFile2.txt');
+// readStream.on('data',(chunk)=>{
+//   writeStream.write(chunk);
+// })
+
+// 6.8 Pipes and Pipe chainning
+
+const fs = require('fs');
+const zlib = require('zlib');
+const gzip = zlib.createGzip();
+const gunzip = zlib.createGunzip();
+fs.writeFile('./hugeFile1.txt','This file is protending to be huge.',(err)=> console.log(err));
+const readStream1 = fs.createReadStream('./hugeFile1.txt', 'utf8');
+const writeStream1 = fs.createWriteStream('./hugeFile2.txt.gz');
+const readStream2 = fs.createReadStream('./hugeFile2.txt.gz');
+const writeStream2 = fs.createWriteStream('./uncompressedHugeFile2.txt');
+
+readStream1.pipe(gzip).pipe(writeStream1); //the source srteam is readStream1, and the destination is wrtieSteam1
+readStream2.pipe(gunzip).pipe(writeStream2); // gzip is to compress the file, and gunzip is to uncompress it
