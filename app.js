@@ -257,17 +257,34 @@
 // readStream1.pipe(gzip).pipe(writeStream1); //the source srteam is readStream1, and the destination is wrtieSteam1
 // readStream2.pipe(gunzip).pipe(writeStream2); // gzip is to compress the file, and gunzip is to uncompress it
 
-// 7. http module, to creat a http server
-const http = require('http');
-const server = http.createServer((req, res)=>{
-  if (req.url === '/') {                        // send request if it's the root domain
-    res.write('The response from server on the root domain.');     // the response
-    res.end();                                  // send to user
-  }
-  else{
-    res.write('not using the root domain.');
-    res.end();
-  }
+// // 7. http module, to create a http server
+// const http = require('http');
+// const server = http.createServer((req, res)=>{
+//   if (req.url === '/') {                        // send request if it's the root domain
+//     res.write('The response from server on the root domain.');     // the response
+//     res.end();                                  // send to user
+//   }
+//   else{
+//     res.write('not using the root domain.');
+//     res.end();
+//   }
     
-});
-server.listen('3000');   //listen on port 3000
+// });
+// server.listen('3000');   //listen on port 3000
+
+// 8. using http and file system modules to serve static files
+const http = require('http');
+const fs = require('fs');
+http.createServer((req,res) => {
+  const readStream = fs.createReadStream('./staticFolder/index.html');
+  res.writeHead(200,{'Content-type': 'text/html'});
+  readStream.pipe(res);
+  ////or 
+  // const readStream = fs.createReadStream('./staticFolder/static.json');
+  // res.writeHead(200,{'Content-type': 'application/json'});
+  // readStream.pipe(res);
+  ////or 
+  // const readStream = fs.createReadStream('./staticFolder/image.png');
+  // res.writeHead(200,{'Content-type': 'image/png'});
+  // readStream.pipe(res);
+}).listen(3000);
