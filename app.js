@@ -293,3 +293,14 @@
 //    -- run npm init in terminal, will initalize a package.json file that holds all metadata for the project, 
 //       such as the name of the project, the version number. 
 //    -- run npm install to install or npm uninstall to uninstall the node module packages 
+
+
+// 10. semantic versioning
+// ex. "dependencies": {
+//         "lodash": "^4.17.11"  // 4 represents major version. (a breaking change, which means it migh not compatible with the old version)
+                                 // 17 pre minor version (update functionality, deprecate some of old fuctionality)
+                                 // 11 patch version (bug fixes implement)
+                                 // ^ do not make any major updates, it's okay with minor or patch updates
+                                 // ~ only want patch updates
+                                 // if no symbol, means that I will only allow the current version. no updates.
+//     } 
