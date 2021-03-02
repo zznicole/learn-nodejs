@@ -272,19 +272,24 @@
 // });
 // server.listen('3000');   //listen on port 3000
 
-// 8. using http and file system modules to serve static files
-const http = require('http');
-const fs = require('fs');
-http.createServer((req,res) => {
-  const readStream = fs.createReadStream('./staticFolder/index.html');
-  res.writeHead(200,{'Content-type': 'text/html'});
-  readStream.pipe(res);
-  ////or 
-  // const readStream = fs.createReadStream('./staticFolder/static.json');
-  // res.writeHead(200,{'Content-type': 'application/json'});
-  // readStream.pipe(res);
-  ////or 
-  // const readStream = fs.createReadStream('./staticFolder/image.png');
-  // res.writeHead(200,{'Content-type': 'image/png'});
-  // readStream.pipe(res);
-}).listen(3000);
+// // 8. using http and file system modules to serve static files
+// const http = require('http');
+// const fs = require('fs');
+// http.createServer((req,res) => {
+//   const readStream = fs.createReadStream('./staticFolder/index.html');
+//   res.writeHead(200,{'Content-type': 'text/html'});
+//   readStream.pipe(res);
+//   ////or 
+//   // const readStream = fs.createReadStream('./staticFolder/static.json');
+//   // res.writeHead(200,{'Content-type': 'application/json'});
+//   // readStream.pipe(res);
+//   ////or 
+//   // const readStream = fs.createReadStream('./staticFolder/image.png');
+//   // res.writeHead(200,{'Content-type': 'image/png'});
+//   // readStream.pipe(res);
+// }).listen(3000);
+
+// 9. using npm init to create package.json, and npm install to install or npm uninstall to uninstall external packages 
+//    -- run npm init in terminal, will initalize a package.json file that holds all metadata for the project, 
+//       such as the name of the project, the version number. 
+//    -- run npm install to install or npm uninstall to uninstall the node module packages 
